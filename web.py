@@ -789,7 +789,7 @@ with gr.Blocks(title="RVC WebUI") as app:
                             label=i18n(
                                 "Transpose (integer, number of semitones, raise by an octave: 12, lower by an octave: -12)"
                             ),
-                            value=0,
+                            value=12,
                         )
                         input_audio0 = gr.Audio(
                             label=i18n("The audio file to be processed"),
@@ -861,7 +861,7 @@ with gr.Blocks(title="RVC WebUI") as app:
                             minimum=0,
                             maximum=1,
                             label=i18n("Feature searching ratio"),
-                            value=0.75,
+                            value=0.5,
                             interactive=True,
                         )
                         f0_file = gr.File(
@@ -918,7 +918,7 @@ with gr.Blocks(title="RVC WebUI") as app:
                             label=i18n(
                                 "Transpose (integer, number of semitones, raise by an octave: 12, lower by an octave: -12)"
                             ),
-                            value=0,
+                            value=12,
                         )
                         dir_input = gr.Textbox(
                             label=i18n(
@@ -1014,7 +1014,7 @@ with gr.Blocks(title="RVC WebUI") as app:
                             minimum=0,
                             maximum=1,
                             label=i18n("Feature searching ratio"),
-                            value=1,
+                            value=0.5,
                             interactive=True,
                         )
                         format1 = gr.Radio(
