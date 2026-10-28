@@ -213,6 +213,14 @@ class Pipeline(object):
             try:
                 index = faiss.read_index(file_index)
                 big_npy = index.reconstruct_n(0, index.ntotal)
+                if index.d != (768 if version == "v2" else 256):
+                    logger.warning(
+                        "Index dim %d mismatches %s model, skip index: %s",
+                        index.d,
+                        version,
+                        file_index,
+                    )
+                    index = big_npy = None
             except:
                 traceback.print_exc()
                 index = big_npy = None
