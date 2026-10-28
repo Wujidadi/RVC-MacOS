@@ -17,6 +17,8 @@ load_dotenv("sha256.env")
 os.environ["OMP_NUM_THREADS"] = "4"
 if sys.platform == "darwin":
     os.environ["PYTORCH_ENABLE_MPS_FALLBACK"] = "1"
+    # torch 與 faiss 各自內含 libomp，未設定時 faiss 搜尋會中止或 segfault
+    os.environ["KMP_DUPLICATE_LIB_OK"] = "TRUE"
 
 now_dir = os.getcwd()
 sys.path.append(now_dir)
