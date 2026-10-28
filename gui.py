@@ -905,7 +905,9 @@ if __name__ == "__main__":
 
             for f0_dtype in (np.float32, np.float64):
                 for key in (0, 0.0):
-                    post_process(100, np.zeros(1, dtype=f0_dtype), key, 0, 0.0, 1.0, None)
+                    post_process(
+                        100, np.zeros(1, dtype=f0_dtype), key, 0, 0.0, 1.0, None
+                    )
             self.start_stream()
 
         def start_stream(self):
