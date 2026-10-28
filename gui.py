@@ -898,6 +898,12 @@ if __name__ == "__main__":
             self.tg = TorchGate(
                 sr=self.gui_config.samplerate, n_fft=4 * self.zc, prop_decrease=0.9
             ).to(self.config.device)
+            # numba 首次編譯會耗盡 CoreAudio IO 執行緒的小堆疊而觸發 SIGBUS，須先於主執行緒編譯
+            from rvc.f0.gen import post_process
+
+            for f0_dtype in (np.float32, np.float64):
+                for key in (0, 0.0):
+                    post_process(100, np.zeros(1, dtype=f0_dtype), key, 0, 0.0, 1.0, None)
             self.start_stream()
 
         def start_stream(self):
